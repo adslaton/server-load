@@ -32,11 +32,10 @@ function handleError(error) {
     var code = error.statusCode;
 
     if (report.errors[code]) {
-        report.errors[code]++;
+        report.errors[code].amount++;
     } else {
-        report.errors[code] = {
-            code: 1
-        };
+        report.errors[code] = error;
+        report.errors[code].amount = 1;
     }
 
     report.fail++;
