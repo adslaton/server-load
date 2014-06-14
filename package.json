@@ -1,6 +1,6 @@
 {
     "name": "server-load",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Tests the load on a severe",
     "author": {
         "name": "A.D. Slaton",
