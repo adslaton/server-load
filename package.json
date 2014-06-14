@@ -1,0 +1,25 @@
+{
+    "name": "server-load",
+    "version": "0.0.1",
+    "description": "Tests the load on a severe",
+    "author": {
+        "name": "A.D. Slaton",
+        "email": "slaton.ad@gmail.com"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adslaton/server-load.git"
+    },
+    "engines": {
+        "node": "0.10.28"
+    },
+    "dependencies": {
+        "http-utility": "0.0.3"
+    },
+    "keywords": [
+        "server-load-test"
+    ]
+}
