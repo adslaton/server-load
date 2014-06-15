@@ -1,11 +1,14 @@
 var Http = require('http-utility'),
     host = 'localhost',
+    path = 'foo',
     options = {
         host: host,
-        port: '8080'
+        port: '8080',
+        path: path
     },
     report = {
         host: host,
+        path: path,
         pass: 0,
         fail: 0,
         completed: 0,
