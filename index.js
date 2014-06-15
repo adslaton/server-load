@@ -1,5 +1,5 @@
 var Http = require('http-utility'),
-    host = 'localhost.cnn.com',
+    host = 'localhost',
     path = '',
     options = {
         host: host,
