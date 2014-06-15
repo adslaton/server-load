@@ -1,6 +1,6 @@
 {
     "name": "server-load",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Tests the load on a severe",
     "author": {
         "name": "A.D. Slaton",
@@ -17,7 +17,7 @@
         "node": "0.10.28"
     },
     "dependencies": {
-        "http-utility": "0.0.3"
+        "http-utility": "0.0.5"
     },
     "keywords": [
         "server-load-test"

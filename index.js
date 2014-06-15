@@ -1,6 +1,6 @@
 var Http = require('http-utility'),
     host = 'localhost',
-    path = 'foo',
+    path = '',
     options = {
         host: host,
         port: '8080',
@@ -15,11 +15,11 @@ var Http = require('http-utility'),
         ongoing: 0,
         total: 500,
         pending: 500,
-        start: new Date(),
         success: {
             200: 0
         },
-        errors: {}
+        errors: {},
+        start: new Date()
     },
     request,
     status;
@@ -64,6 +64,7 @@ function getData() {
     Http.get(options, function callback(error, data) {
         report.pending--;
         report.ongoing++;
+        report.start = new Date();
 
         if (error) {
             handleError(error);
