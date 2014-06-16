@@ -32,13 +32,13 @@ function success() {
     completed();
 }
 
-function handleError(error) {
-    var code = error.statusCode;
-
+function handleError(failure) {
+    var code = failure.error.statusCode;
+    
     if (report.errors[code]) {
         report.errors[code].amount++;
     } else {
-        report.errors[code] = error;
+        report.errors[code] = failure.error;
         report.errors[code].amount = 1;
     }
 
