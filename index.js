@@ -47,7 +47,7 @@ function handleError(error) {
 }
 
 function displayReport() {
-    console.log(report);
+    console.log('Report data - %j',report);
 }
 
 function completed() {

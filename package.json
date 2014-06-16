@@ -1,6 +1,6 @@
 {
     "name": "server-load",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Puts stress on a sever",
     "author": {
         "name": "A.D. Slaton",
@@ -17,7 +17,7 @@
         "node": "0.10.28"
     },
     "dependencies": {
-        "http-utility": "0.0.7"
+        "http-utility": "0.0.8"
     },
     "keywords": [
         "server-load-test"
