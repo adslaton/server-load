@@ -1,6 +1,6 @@
 var Http = require('http-utility'),
-    host = '10.188.95.63',
-    path = '/foo',
+    host = 'localhost',
+    path = '',
     requests = 50,
     options = {
         host: host,
