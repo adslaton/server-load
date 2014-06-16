@@ -1,7 +1,7 @@
 {
     "name": "server-load",
-    "version": "0.0.3",
-    "description": "Tests the load on a severe",
+    "version": "0.0.4",
+    "description": "Puts stress on a sever",
     "author": {
         "name": "A.D. Slaton",
         "email": "slaton.ad@gmail.com"
@@ -11,13 +11,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/adslaton/server-load.git"
+        "url": "https://github.com/adslaton/server-stress.git"
     },
     "engines": {
         "node": "0.10.28"
     },
     "dependencies": {
-        "http-utility": "0.0.6"
+        "http-utility": "0.0.7"
     },
     "keywords": [
         "server-load-test"
