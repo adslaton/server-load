@@ -8,7 +8,8 @@ var cfg = {
             }
         ],
         paths: [
-            ''
+            '',
+            '/foo'
         ],
         port: '8080',
         requests: 50

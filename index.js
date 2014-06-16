@@ -19,6 +19,8 @@ function success(report, options) {
 }
 
 function handleError(failure, report, options) {
+    failure.error = failure.error || new Error();
+
     var code = failure.error.statusCode;
     
     if (report.errors[code]) {
@@ -64,7 +66,7 @@ function getData(report, options) {
     });
 }
 
-function start() {
+function startRequest() {
     var options = {},
         hosts = cfg.hosts,
         paths = cfg.paths,
@@ -80,7 +82,7 @@ function start() {
         
         /* get data for each path */
         for (j = 0; j < paths.length; j++) {
-            options.path = paths[i];
+            options.path = paths[j];
             report = {
                 host: options.host,
                 path: options.path,
@@ -101,4 +103,15 @@ function start() {
     }
 }
 
-start();
+function parallelHandler(error, results) {
+    if (error) {
+        log.log('Error while running parallel: %j', error);
+    }
+    log.log('parallel completed');
+}
+
+/* Use async.parallel to make multiple requests */
+async.parallel([
+    startRequest,
+    startRequest
+], parallelHandler);
