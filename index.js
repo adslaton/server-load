@@ -1,6 +1,7 @@
 var Http = require('http-utility'),
-    host = 'localhost',
+    host = 'locahost',
     path = '',
+    requests = 50,
     options = {
         host: host,
         port: '8080',
@@ -12,9 +13,9 @@ var Http = require('http-utility'),
         pass: 0,
         fail: 0,
         completed: 0,
-        ongoing: 0,
-        total: 500,
-        pending: 500,
+        ongoing: -1,
+        total: requests,
+        pending: requests,
         success: {
             200: 0
         },
@@ -45,18 +46,21 @@ function handleError(error) {
     completed();
 }
 
+function displayReport() {
+    console.log(report);
+}
+
 function completed() {
-    if (report.pending <= -1) {
+    report.completed++;
+    if (report.pending === 0) {
+        displayReport();
         return;
     }
 
     report.ongoing--;
-    report.completed++;
     getData();
 
     report.end = new Date();
-
-    console.log(report);
 
 }
 
