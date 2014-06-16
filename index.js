@@ -1,38 +1,24 @@
+'use strict';
+
 var Http = require('http-utility'),
-    host = 'localhost',
-    path = '',
-    requests = 50,
-    options = {
-        host: host,
-        port: '8080',
-        path: path
-    },
-    report = {
-        host: host,
-        path: path,
-        pass: 0,
-        fail: 0,
-        completed: 0,
-        ongoing: -1,
-        total: requests,
-        pending: requests,
-        success: {
-            200: 0
-        },
-        errors: {},
-        start: new Date()
-    },
-    request,
+    async = require('async'),
+    cfg = require('./cfg')(),
     status;
 
-function success() {
+function setOptions() {
+    var options = {};
+
+    return options;
+}
+
+function success(report, options) {
     report.success[200]++;
 
     report.pass++;
-    completed();
+    completed(report, options);
 }
 
-function handleError(failure) {
+function handleError(failure, report, options) {
     var code = failure.error.statusCode;
     
     if (report.errors[code]) {
@@ -43,40 +29,76 @@ function handleError(failure) {
     }
 
     report.fail++;
-    completed();
+    completed(report, options);
 }
 
-function displayReport() {
+function displayReport(report) {
     console.log('Report data - %j', report);
 }
 
-function completed() {
+function completed(report, options) {
     report.completed++;
     if (report.pending === 0) {
-        displayReport();
+        displayReport(report);
         return;
     }
 
     report.ongoing--;
-    getData();
+    getData(report, options);
 
     report.end = new Date();
 
 }
 
-function getData() {
+function getData(report, options) {
     Http.get(options, function callback(error, data) {
         report.pending--;
         report.ongoing++;
         report.start = new Date();
 
         if (error) {
-            handleError(error);
+            handleError(error, report, options);
         } else {
-            success();
+            success(report, options);
         }
     });
 }
 
+function start() {
+    var options = {},
+        hosts = cfg.hosts,
+        paths = cfg.paths,
+        requests = cfg.requests,
+        report,
+        i,
+        j;
 
-getData();
+    /* Set the http options for each host */
+    for (i = 0; i < hosts.length; i++) {
+        options.host = hosts[i].host;
+        options.port = hosts[i].port;
+        
+        /* get data for each path */
+        for (j = 0; j < paths.length; j++) {
+            options.path = paths[i];
+            report = {
+                host: options.host,
+                path: options.path,
+                pass: 0,
+                fail: 0,
+                completed: 0,
+                ongoing: -1,
+                total: requests,
+                pending: requests,
+                success: {
+                    200: 0
+                },
+                errors: {},
+                start: new Date()
+            }
+            getData(report, options);
+        }
+    }
+}
+
+start();

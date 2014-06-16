@@ -1,4 +1,4 @@
-server-load
+server-stress
 ================
 
-Tests the load on a sever
+Places stress on a sever
