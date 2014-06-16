@@ -1,6 +1,6 @@
 {
     "name": "server-load",
-    "version": "0.0.5",
+    "version": "0.0.4",
     "description": "Puts stress on a sever",
     "author": {
         "name": "A.D. Slaton",
