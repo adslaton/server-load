@@ -17,7 +17,7 @@
         "node": "0.10.28"
     },
     "dependencies": {
-        "http-utility": "0.0.8"
+        "http-utility": "0.1.0"
     },
     "keywords": [
         "server-load-test"
