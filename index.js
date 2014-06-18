@@ -66,7 +66,7 @@ function getData(report, options) {
     });
 }
 
-function startRequest() {
+function startRequest(position) {
     var options = {},
         hosts = cfg.hosts,
         paths = cfg.paths,
@@ -84,6 +84,7 @@ function startRequest() {
         for (j = 0; j < paths.length; j++) {
             options.path = paths[j];
             report = {
+                position: position,
                 host: options.host,
                 path: options.path,
                 pass: 0,
@@ -112,6 +113,6 @@ function parallelHandler(error, results) {
 
 /* Use async.parallel to make multiple requests */
 async.parallel([
-    startRequest,
-    startRequest
+    startRequest(1),
+    startRequest(2)
 ], parallelHandler);
