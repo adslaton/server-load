@@ -9,7 +9,7 @@ var cfg = {
         ],
         paths: [
             '/foo',
-            ''
+            '/bar'
         ],
         port: '8080',
         requests: 50
