@@ -66,7 +66,7 @@ function getData(report, options) {
     });
 }
 
-function startRequest() {
+function startRequest(position) {
     var options = {},
         hosts = cfg.hosts,
         paths = cfg.paths,
@@ -84,6 +84,7 @@ function startRequest() {
         for (j = 0; j < paths.length; j++) {
             options.path = paths[j];
             report = {
+                position: position,
                 host: options.host,
                 path: options.path,
                 pass: 0,
@@ -99,19 +100,24 @@ function startRequest() {
                 start: new Date()
             }
             getData(report, options);
-        }
+        } 
     }
+    return 'fired request ' + position;
 }
 
 function parallelHandler(error, results) {
     if (error) {
-        log.log('Error while running parallel: %j', error);
+        console.log('Error while running parallel: %j', error);
     }
-    log.log('parallel completed');
+    console.log(results);
 }
 
 /* Use async.parallel to make multiple requests */
-async.parallel([
-    startRequest,
-    startRequest
-], parallelHandler);
+async.parallel({
+    one: function(callback) {
+        callback(null, startRequest(1));
+    },
+    two: function(callback) {
+        callback(null, startRequest(2));
+    }
+}, parallelHandler);
