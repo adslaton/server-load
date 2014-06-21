@@ -1,6 +1,6 @@
 {
     "name": "server-stress",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Puts stress on a sever",
     "author": {
         "name": "A.D. Slaton",
