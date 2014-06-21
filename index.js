@@ -100,19 +100,24 @@ function startRequest(position) {
                 start: new Date()
             }
             getData(report, options);
-        }
+        } 
     }
+    return 'fired request ' + position;
 }
 
 function parallelHandler(error, results) {
     if (error) {
-        log.log('Error while running parallel: %j', error);
+        console.log('Error while running parallel: %j', error);
     }
-    log.log('parallel completed');
+    console.log(results);
 }
 
 /* Use async.parallel to make multiple requests */
-async.parallel([
-    startRequest(1),
-    startRequest(2)
-], parallelHandler);
+async.parallel({
+    one: function(callback) {
+        callback(null, startRequest(1));
+    },
+    two: function(callback) {
+        callback(null, startRequest(2));
+    }
+}, parallelHandler);

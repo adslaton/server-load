@@ -8,11 +8,11 @@ var cfg = {
             }
         ],
         paths: [
-            '/foo',
-            '/bar'
+            '/',
+            '/fiz'
         ],
         port: '8080',
-        requests: 50
+        requests: 5
     };
 
 module.exports = function config() {
