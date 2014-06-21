@@ -102,7 +102,7 @@ function startRequest(position) {
             getData(report, options);
         } 
     }
-    return 'fired request ' + position;
+    return 'fired request bactch ' + position;
 }
 
 function parallelHandler(error, results) {
