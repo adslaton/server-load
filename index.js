@@ -21,11 +21,12 @@ function success(report, options) {
 function handleError(failure, report, options) {
     failure.error = failure.error || new Error();
 
-    var code = failure.error.statusCode;
+    var code = failure.error.statusCode || 500;
     
     if (report.errors[code]) {
         report.errors[code].amount++;
     } else {
+        //console.log('failure %j', failure);
         report.errors[code] = failure.error;
         report.errors[code].amount = 1;
     }
@@ -49,14 +50,12 @@ function completed(report, options) {
     getData(report, options);
 
     report.end = new Date();
-
 }
 
 function getData(report, options) {
     Http.get(options, function callback(error, data) {
         report.pending--;
         report.ongoing++;
-        report.start = new Date();
 
         if (error) {
             handleError(error, report, options);
@@ -72,6 +71,7 @@ function startRequest(position) {
         paths = cfg.paths,
         requests = cfg.requests,
         report,
+        start = new Date(),
         i,
         j;
 
@@ -97,8 +97,10 @@ function startRequest(position) {
                     200: 0
                 },
                 errors: {},
-                start: new Date()
-            }
+                start: start
+            };
+            console.log('***** start %s', report.start);
+            console.log('options %j', options);
             getData(report, options);
         } 
     }
@@ -116,8 +118,5 @@ function parallelHandler(error, results) {
 async.parallel({
     one: function(callback) {
         callback(null, startRequest(1));
-    },
-    two: function(callback) {
-        callback(null, startRequest(2));
     }
 }, parallelHandler);

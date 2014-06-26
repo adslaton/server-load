@@ -1,6 +1,6 @@
 {
     "name": "server-stress",
-    "version": "0.0.7",
+    "version": "0.1.0",
     "description": "Puts stress on a sever",
     "author": {
         "name": "A.D. Slaton",
@@ -17,7 +17,7 @@
         "node": "0.10.28"
     },
     "dependencies": {
-        "http-utility": "0.2.0",
+        "http-utility": "0.2.1",
         "async": "0.9.0"
     },
     "keywords": [
