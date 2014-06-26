@@ -17,6 +17,7 @@
         "node": "0.10.28"
     },
     "dependencies": {
+        "heapdump": "0.2.9",
         "http-utility": "0.2.0",
         "async": "0.9.0"
     },
