@@ -50,14 +50,12 @@ function completed(report, options) {
     getData(report, options);
 
     report.end = new Date();
-
 }
 
 function getData(report, options) {
     Http.get(options, function callback(error, data) {
         report.pending--;
         report.ongoing++;
-        report.start = new Date();
 
         if (error) {
             handleError(error, report, options);
@@ -73,7 +71,7 @@ function startRequest(position) {
         paths = cfg.paths,
         requests = cfg.requests,
         report,
-        startTime = new Date(),
+        start = new Date(),
         i,
         j;
 
@@ -99,8 +97,9 @@ function startRequest(position) {
                     200: 0
                 },
                 errors: {},
-                start: startTime
+                start: start
             };
+            console.log('***** start %s', report.start);
             console.log('options %j', options);
             getData(report, options);
         } 

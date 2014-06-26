@@ -8,9 +8,9 @@ var cfg = {
             }
         ],
         paths: [
-            '/bix'
+            '/useful'
         ],
-        requests: 1000
+        requests: 10000
     };
 
 module.exports = function config() {
