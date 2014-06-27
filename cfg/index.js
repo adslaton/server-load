@@ -8,7 +8,7 @@ var cfg = {
             }
         ],
         paths: [
-            '/useful'
+            '/foo'
         ],
         requests: 10000
     };

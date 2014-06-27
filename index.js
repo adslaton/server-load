@@ -79,6 +79,7 @@ function startRequest(position) {
     for (i = 0; i < hosts.length; i++) {
         options.host = hosts[i].host;
         options.port = hosts[i].port;
+        options.agent = false;
         
         /* get data for each path */
         for (j = 0; j < paths.length; j++) {
